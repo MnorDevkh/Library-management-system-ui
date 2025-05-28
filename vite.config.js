@@ -7,6 +7,13 @@ export default defineConfig({
         port: 3000,
         host: "0.0.0.0"
     },
+    proxy: {
+      '/api': {
+        target: 'http://157.230.33.25:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/api/v1'),
+      },
+    },
     css: {
         preprocessorOptions: {
           less: {

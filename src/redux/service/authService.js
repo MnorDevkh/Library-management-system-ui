@@ -1,3 +1,4 @@
+import axios from "axios";
 import apiAuth from "./apiAuth";
 
 const signInService = async (credentials) => {
@@ -5,7 +6,7 @@ const signInService = async (credentials) => {
     email: credentials.email,
     password: credentials.password,
   };
-  return await apiAuth.post("/v1/auth/signin", data);
+   return axios.post("/api/signin", data);
 };
 
 const signupService = async (credentials) => {
