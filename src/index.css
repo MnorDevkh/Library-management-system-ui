@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=KoHo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'KoHo', 'Kantumruy', sans-serif;
+}
+
+:root {
+    --bg-color: white;
+    --text-color: black;
+}
+
+.dark {
+    --bg-color: #111A1A;
+    --text-color: #F5F5F5;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.bg-dark {
+    color: #111A1A;
+}
+
+.color-white {
+    color: #FFFFFF;
+}
+
+.bg-primary {
+    background-color: #1C23A7;
+}
+
+
+.bg-primary:hover{
+    background-color: #1C23A7;
+}
+
+
+
+.color-primary {
+    color: #1C23A7;
+}
+
+.color-secondary {
+    color: #8B8003;
+}
+
+.color-error{
+    color: #CC3300;
+}
+
+.color-warning {
+    color: #FBC900;
+}
+
+.color-success {
+    color: #339900;
+}
+
+.custom-menu .ant-menu-item { background: none !important; }

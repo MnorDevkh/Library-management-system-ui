@@ -1,0 +1,15 @@
+/* eslint-disable no-useless-catch */
+
+import api from "./api";
+
+const getAllPublicher = async (page,size,sortBy) => {
+    try {
+      const response = await api.get(`/publishers?page=${page}&size=${size}&sortBy=${sortBy}`);
+      return response.data;
+    } catch (error) {
+      // Handle the error here
+      throw error; // You can rethrow the error if you want it to propagate to the calling code
+    }
+  };
+const PublisherService = { getAllPublicher };
+export default PublisherService;
