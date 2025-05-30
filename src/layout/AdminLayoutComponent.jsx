@@ -9,7 +9,7 @@ const AdminLayoutComponent = () => {
         <Link to="/">
           <div className="flex ml-6 py-4 items-center text-white">
             <Image
-              src="./src/assets/ailogo.png"
+              src="/assets/ailogo.png"
               alt="Library Logo"
               width={40}
               height={40}

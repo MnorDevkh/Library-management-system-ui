@@ -8,7 +8,7 @@ const RuleComponent = () => {
         <section
           className="mx-auto max-w-7xl p-4 flex flex-row justify-between items-center bg-cover bg-center"
           style={{
-            backgroundImage: "url('./src/assets/banner.png')",
+            backgroundImage: "url('/assets/banner.png')",
             height: "350px",
           }}
         ></section>
@@ -16,7 +16,7 @@ const RuleComponent = () => {
         <div
           style={{
             backgroundImage:
-              "url('./src/assets/background/background_rule.png')",
+              "url('/assets/background/background_rule.png')",
             backgroundSize: "cover",
           }}
         >
