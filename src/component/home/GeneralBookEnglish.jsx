@@ -65,7 +65,7 @@ const GeneralBookEnglish = () => {
       <section
         className="mx-auto max-w-7xl p-4 flex flex-row justify-between items-center bg-cover bg-center"
         style={{
-          backgroundImage: "url('/assets/banner.png')",
+          backgroundImage: "url('./src/assets/banner.png')",
           height: "350px",
         }}
       ></section>
