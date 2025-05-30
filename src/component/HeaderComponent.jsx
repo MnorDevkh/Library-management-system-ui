@@ -36,7 +36,7 @@ const HeaderComponent = () => {
       <section className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <section className="flex items-center gap-2">
           <Image
-            src="./src/assets/ailogo.png"
+            src="/assets/ailogo.png"
             alt="Library Logo"
             width={40}
             height={40}

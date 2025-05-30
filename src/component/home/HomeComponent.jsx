@@ -21,7 +21,7 @@ const HomeComponent = () => {
   const fetchSlideshow = async () => {
     try {
       const response = await ImageService.getImageByType("Slideshow");
-      console.log("sdas" + response);
+    
       const images = response.map((slide) => ({
         id: slide.id,
         src: `${baseURLString}/uploads/images/${slide.fileName}`,
