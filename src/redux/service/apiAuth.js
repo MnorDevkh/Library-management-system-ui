@@ -1,5 +1,5 @@
 import axios from 'axios';
-import baseURL from "../redux/service/url";
+import baseURL from "./url";
 
 const baseURLString = baseURL.defaults.baseURL; 
 const apiAuth = axios.create({
