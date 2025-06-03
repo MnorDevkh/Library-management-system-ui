@@ -34,6 +34,8 @@ import UpdateCategoryComponent from "../component/admin/UpdateCategoryComponent.
 import GetContact from "../component/admin/GetContect.jsx";
 import AddShelfComponent from "../component/admin/AddShelfComponent.jsx";
 import ListShelfComponent from "../component/admin/ListShelfComponent.jsx";
+import ListPublisherComponent from "../component/admin/ListPublisherComponent.jsx";
+import AddPublisherComponent from "../component/admin/AddPublisherComponent.jsx";
 
 const RouterComponentPublic = () => {
   return (
@@ -96,6 +98,10 @@ const RouterComponentPublic = () => {
           {/*  shelf */}
           <Route path="shelf-list" element={<ListShelfComponent/>} />
           <Route path="add-shelf" element={< AddShelfComponent/>} />
+
+           {/*  publisher */}
+          <Route path="publisher-list" element={<ListPublisherComponent/>} />
+          <Route path="add-publisher" element={< AddPublisherComponent/>} />
         </Route>
       </Route>
     </Routes>

@@ -25,7 +25,7 @@ const columns = (showDeleteConfirm) => [
   },
   {
     title: "Shelf Name",
-    dataIndex: "shelfName",
+    dataIndex: "bookshelfName",
     key: "shelfName",
   },
   {
@@ -61,7 +61,7 @@ const ListShelfComponent = () => {
 
   const fetchData = async () => {
     try {
-      const result = await ShelfService.getAllShelf(1, 10, "shelfId");
+      const result = await ShelfService.getAllShelf(1, 10, "bookshelfId");
       dispatch(setShelf(result.data || []));
       setLoading(false);
     } catch (error) {

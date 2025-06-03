@@ -1,9 +1,7 @@
 import axios from 'axios';
-import baseURL from "./url";
 
-const baseURLString = baseURL.defaults.baseURL; 
 const apiAuth = axios.create({
-    baseURL: baseURLString,
+    baseURL: "http://localhost:8080/api",
     headers: {
         "Accept": "*/*",
         "Content-Type": "application/json",
