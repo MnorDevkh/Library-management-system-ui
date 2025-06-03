@@ -33,6 +33,7 @@ import AddCategoryComponent from "../component/admin/AddCategoryComponent.jsx";
 import UpdateCategoryComponent from "../component/admin/UpdateCategoryComponent.jsx";
 import GetContact from "../component/admin/GetContect.jsx";
 import AddShelfComponent from "../component/admin/AddShelfComponent.jsx";
+import ListShelfComponent from "../component/admin/ListShelfComponent.jsx";
 
 const RouterComponentPublic = () => {
   return (
@@ -93,7 +94,7 @@ const RouterComponentPublic = () => {
           <Route path="contact" element={<GetContact />} />
           <Route path="gallery" element={<GalleryAdminComponent />} />
           {/*  shelf */}
-          <Route path="shelf-lisf" element={<AddShelfComponent/>} />
+          <Route path="shelf-list" element={<ListShelfComponent/>} />
           <Route path="add-shelf" element={< AddShelfComponent/>} />
         </Route>
       </Route>

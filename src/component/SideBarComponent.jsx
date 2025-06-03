@@ -65,9 +65,9 @@ const SiderBarComponent = () => {
   
             },
               {
-              key: '15',
+              key: '16',
               icon: <TagsOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
-              label: <Link to="categorise">Shelf</Link>,
+              label: <Link to="shelf-list">ធ្នើរដាកសៀវភៅ</Link>,
   
             },
             {
