@@ -52,52 +52,23 @@ const SiderBarComponent = () => {
               key: '9',
               icon: <BookOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
               label:<Link to="list-book">Books</Link>,
-              // children: [
-              //   {
-              //     key: '10',
-              //     icon: <RiFileListLine style={{ color: '#292D77', fontSize: '20px' }} />,
-              //     label: <Link to="list-book">List Books</Link>,
-              //   },
-              //   {
-              //     key: '11',
-              //     icon: <RiMenuAddLine style={{ color: '#292D77', fontSize: '20px' }} />,
-              //     label: <Link to="add-Book">Create New Book</Link>,
-              //   }
-              // ],
             },
             {
               key: '12',
               icon: <AuditOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
               label: <Link to="list-author">List Author</Link>,
-              // children: [
-              //   {
-              //     key: '13',
-              //     icon: <RiFileListLine style={{ color: '#292D77', fontSize: '20px' }} />,
-              //     label: <Link to="list-author">List Author</Link>,
-              //   },
-              //   {
-              //     key: '14',
-              //     icon: <RiMenuAddLine style={{ color: '#292D77', fontSize: '20px' }} />,
-              //     label: <Link to="add-author">Create Author</Link>,
-              //   }
-              // ],
             },
             {
               key: '15',
               icon: <TagsOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
               label: <Link to="categorise">Category</Link>,
-              // children: [
-              //   {
-              //     key: '16',
-              //     icon: <RiFileListLine style={{ color: '#292D77', fontSize: '20px' }} />,
-              //     label: <Link to="category-list">List Category</Link>,
-              //   },
-              //   {
-              //     key: '17',
-              //     icon: <RiMenuAddLine style={{ color: '#292D77', fontSize: '20px' }} />,
-              //     label: <Link to="categorise">Create Category</Link>,
-              //   }
-              // ],
+  
+            },
+              {
+              key: '15',
+              icon: <TagsOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
+              label: <Link to="categorise">Shelf</Link>,
+  
             },
             {
               key: '18',

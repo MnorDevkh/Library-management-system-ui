@@ -12,9 +12,9 @@ const getAllShelf = async (page,size,sortBy) => {
   }
 };
 
-const addBook = async (data) => {
+const addShelf = async (data) => {
     try {
-      const response = await api.post(`/books`, data);
+      const response = await api.post(`/bookshelf`, data);
       return response.data;
     } catch (error) {
       // Handle the error here
@@ -34,5 +34,5 @@ const deleteBook = async (id) => {
 
 
 
-const ShelfService = {addBook,getAllShelf,deleteBook};
+const ShelfService = {addShelf,getAllShelf,deleteBook};
 export default ShelfService;

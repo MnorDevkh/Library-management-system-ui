@@ -485,26 +485,7 @@ const AddBookComponent = () => {
                 </Select>
               </Form.Item>
             </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Upload"
-                valuePropName="fileList"
-                getValueFromEvent={normFile}
-              >
-                <Upload
-                  listType="picture-card"
-                  fileList={fileList}
-                  onChange={handleUploadChange}
-                >
-                  {fileList.length >= 1 ? null : (
-                    <div>
-                      <PlusOutlined />
-                      <div style={{ marginTop: 8 }}>Upload</div>
-                    </div>
-                  )}
-                </Upload>
-              </Form.Item>
-            </Col>
+            
           </Row>
           <Form.Item>
             <Button type="primary" htmlType="submit">

@@ -1,4 +1,4 @@
-import {Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import SignIn from "../component/auth/SigninComponent.jsx";
 import SignUp from "../component/auth/SignupComponent.jsx";
 import AddressComponent from "../component/common/AddressComponent.jsx";
@@ -32,9 +32,9 @@ import GalleryAdminComponent from "../component/admin/GalleryAdminComponent.jsx"
 import AddCategoryComponent from "../component/admin/AddCategoryComponent.jsx";
 import UpdateCategoryComponent from "../component/admin/UpdateCategoryComponent.jsx";
 import GetContact from "../component/admin/GetContect.jsx";
+import AddShelfComponent from "../component/admin/AddShelfComponent.jsx";
 
 const RouterComponentPublic = () => {
-
   return (
     <Routes>
       {/* Public Routes */}
@@ -73,16 +73,28 @@ const RouterComponentPublic = () => {
           <Route path="add-author" element={<AddAuthorComponent />} />
           <Route path="categorise" element={<CategoriesComponent />} />
           <Route path="add-Category" element={<AddCategoryComponent />} />
-          <Route path="update-category/:categoryId" element={<UpdateCategoryComponent />} />
-          <Route path="update-author/:authorId" element={<UpdateAuthorComponent />} />
+          <Route
+            path="update-category/:categoryId"
+            element={<UpdateCategoryComponent />}
+          />
+          <Route
+            path="update-author/:authorId"
+            element={<UpdateAuthorComponent />}
+          />
           <Route path="update-book/:bookId" element={<UpdateBookComponent />} />
-          <Route path="media" element={<MediaComponent />} />
+          <Route path="update-book/:bookId" element={<UpdateBookComponent />} />
           <Route path="staff" element={<StaffController />} />
           <Route path="add-staff" element={<AddStaffComponent />} />
-          <Route path="edit-staff/:staffId" element={<UpdateStaffComponent />} />
+          <Route
+            path="edit-staff/:staffId"
+            element={<UpdateStaffComponent />}
+          />
           <Route path="slide" element={<SlideShowAdminComponent />} />
           <Route path="contact" element={<GetContact />} />
           <Route path="gallery" element={<GalleryAdminComponent />} />
+          {/*  shelf */}
+          <Route path="shelf-lisf" element={<AddShelfComponent/>} />
+          <Route path="add-shelf" element={< AddShelfComponent/>} />
         </Route>
       </Route>
     </Routes>
