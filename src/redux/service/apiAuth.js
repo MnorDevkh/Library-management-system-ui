@@ -1,8 +1,9 @@
 import axios from 'axios';
 import baseURL from "../redux/service/url";
 
+const baseURLString = baseURL.defaults.baseURL; 
 const apiAuth = axios.create({
-    baseURL: `https://${baseURL.defaults.baseURL}/api`,
+    baseURL: baseURLString,
     headers: {
         "Accept": "*/*",
         "Content-Type": "application/json",
