@@ -1,9 +1,8 @@
 import axios from 'axios';
 import baseURL from './url';
 
-const baseURLString = baseURL.defaults.baseURL; // Get the base URL string from the Axios instance
 const api = axios.create({
-    baseURL: baseURLString,
+    baseURL: `https://${baseURL.defaults.baseURL}/api`,
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
