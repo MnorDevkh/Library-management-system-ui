@@ -49,25 +49,30 @@ const SiderBarComponent = () => {
               label: <Link to="contact">Admin Dashboard</Link>,
             },
             {
-              key: '9',
+              key: '2',
               icon: <BookOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
-              label:<Link to="list-book">Books</Link>,
+              label:<Link to="book">សៀវភៅ</Link>,
+            },
+            {
+              key: '2',
+              icon: <BookOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
+              label:<Link to="publisher">អ្នកបោះពុម្ពផ្សាយ</Link>,
             },
             {
               key: '12',
               icon: <AuditOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
-              label: <Link to="list-author">List Author</Link>,
+              label: <Link to="author">អ្នកនិពន្ធ</Link>,
             },
             {
               key: '15',
               icon: <TagsOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
-              label: <Link to="categorise">Category</Link>,
+              label: <Link to="categorise">ប្រភេទសៀវភៅ</Link>,
   
             },
               {
               key: '16',
               icon: <TagsOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
-              label: <Link to="shelf-list">ធ្នើរដាកសៀវភៅ</Link>,
+              label: <Link to="shelf">ធ្នើរដាកសៀវភៅ</Link>,
   
             },
             {

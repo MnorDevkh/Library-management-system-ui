@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     shelves: [],
+    shelfById: [],
 };
 
 export const ShelfSlice = createSlice({
@@ -11,9 +12,12 @@ export const ShelfSlice = createSlice({
     setShelf: (state, action) => {
       state.shelves = action.payload;
     },
+    setShelfById: (state, action) => {
+        state.shelfById= action.payload;
+    }
   },
 });
 
-export const { setShelf } = ShelfSlice.actions;
+export const { setShelf ,setShelfById} = ShelfSlice.actions;
 
 export default ShelfSlice.reducer;

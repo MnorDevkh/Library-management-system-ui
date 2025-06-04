@@ -12,6 +12,17 @@ const getAllShelf = async (page,size,sortBy) => {
   }
 };
 
+
+const getShelfbyId = async (id) => {
+  try {  
+    const response = await apiAuth.get(`/bookshelf/${id}`);
+    return response.data;
+  } catch (error) {
+    // Handle the error here
+    throw error; // You can rethrow the error if you want it to propagate to the calling code
+  }
+};
+
 const addShelf = async (data) => {
     try {
       const response = await api.post(`/bookshelf`, data);
@@ -21,6 +32,14 @@ const addShelf = async (data) => {
       throw error;
     }
   };
+  const updateShelf = async (id, data) => {
+  try {
+    const response = await apiAuth.put(`/bookshelf/${id}`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
 
 const deleteBook = async (id) => {
   try {
@@ -34,5 +53,5 @@ const deleteBook = async (id) => {
 
 
 
-const ShelfService = {addShelf,getAllShelf,deleteBook};
+const ShelfService = {addShelf,getAllShelf,deleteBook, getShelfbyId,updateShelf};
 export default ShelfService;

@@ -11,5 +11,23 @@ const getAllPublicher = async (page,size,sortBy) => {
       throw error; // You can rethrow the error if you want it to propagate to the calling code
     }
   };
-const PublisherService = { getAllPublicher };
+
+const updatePublisher = async (publisherId, payload) => {
+  try {
+    const response = await api.put(`/publishers/${publisherId}`, payload);
+    return response.data;
+  } catch (error) {
+    throw error; // Handle the error here
+  }
+};
+
+const getPublisherById = async (publisherId) => {
+  try {
+    const response = await api.get(`/publishers/${publisherId}`);
+    return response.data;
+  } catch (error) {
+    throw error; // Handle the error here
+  }
+};
+const PublisherService = { getAllPublicher,updatePublisher,getPublisherById };
 export default PublisherService;

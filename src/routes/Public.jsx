@@ -15,7 +15,6 @@ import App from "../component/App.jsx";
 import UpdateAuthorComponent from "../component/admin/UpdateAuthorComponent.jsx";
 import UpdateBookComponent from "../component/admin/UpdateBookComponent.jsx";
 import ReadPDFBookComponent from "../component/home/ReadPDFBookComponent.jsx";
-import MediaComponent from "../component/admin/MediaComponent.jsx";
 import RuleComponent from "../component/home/RuleComponent.jsx";
 import StaffComponent from "../component/home/StaffComponent.jsx";
 import StaffController from "../component/admin/StaffController.jsx";
@@ -36,6 +35,9 @@ import AddShelfComponent from "../component/admin/AddShelfComponent.jsx";
 import ListShelfComponent from "../component/admin/ListShelfComponent.jsx";
 import ListPublisherComponent from "../component/admin/ListPublisherComponent.jsx";
 import AddPublisherComponent from "../component/admin/AddPublisherComponent.jsx";
+import UpdatePublisherComponent from "../component/admin/UpdatePublisherComponent.jsx";
+import UpdateShelfComponent from "../component/admin/UpdateShiftComponent.jsx";
+import ImageGalleryComponent from "../component/home/ImageGalleryComponent.jsx";
 
 const RouterComponentPublic = () => {
   return (
@@ -54,6 +56,7 @@ const RouterComponentPublic = () => {
         <Route path="/staff" element={<StaffComponent />} />
         <Route path="/read" element={<ReadPDFBookComponent />} />
         <Route path="/rule" element={<RuleComponent />} />
+        <Route path="/gallery" element={<ImageGalleryComponent />} />
         <Route path="/contact" element={<ContactComponent />} />
         <Route path="/app" element={<App />} />
         {/* Dynamic Route for Genres */}
@@ -70,9 +73,9 @@ const RouterComponentPublic = () => {
         }
       >
         <Route path="/admin" element={<AdminLayoutComponent />}>
-          <Route path="list-book" element={<BookComponent />} />
+          <Route path="book" element={<BookComponent />} />
           <Route path="add-book" element={<AddBookComponent />} />
-          <Route path="list-author" element={<AuthorComponent />} />
+          <Route path="author" element={<AuthorComponent />} />
           <Route path="add-author" element={<AddAuthorComponent />} />
           <Route path="categorise" element={<CategoriesComponent />} />
           <Route path="add-Category" element={<AddCategoryComponent />} />
@@ -96,12 +99,20 @@ const RouterComponentPublic = () => {
           <Route path="contact" element={<GetContact />} />
           <Route path="gallery" element={<GalleryAdminComponent />} />
           {/*  shelf */}
-          <Route path="shelf-list" element={<ListShelfComponent/>} />
-          <Route path="add-shelf" element={< AddShelfComponent/>} />
+          <Route path="shelf" element={<ListShelfComponent />} />
+          <Route path="add-shelf" element={<AddShelfComponent />} />
+          <Route
+            path="update-shelf/:id"
+            element={<UpdateShelfComponent />}
+          />
 
-           {/*  publisher */}
-          <Route path="publisher-list" element={<ListPublisherComponent/>} />
-          <Route path="add-publisher" element={< AddPublisherComponent/>} />
+          {/*  publisher */}
+          <Route path="publisher" element={<ListPublisherComponent />} />
+          <Route path="add-publisher" element={<AddPublisherComponent />} />
+          <Route
+            path="update-publisher/:id"
+            element={<UpdatePublisherComponent />}
+          />
         </Route>
       </Route>
     </Routes>

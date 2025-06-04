@@ -11,7 +11,7 @@ import ImageService from "../../redux/service/ImageService";
 import { baseURLString } from "../../redux/service/url";
 
 const GalleryAdminComponent = () => {
-  const [slides, setSlides] = useState([]); // Store slideshow images
+  const [slides, setSlides] = useState([]); // Store Image images
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mediaLibrary, setMediaLibrary] = useState([]); // Store media library images
   const [selectedImages, setSelectedImages] = useState([]); // Array of selected images
@@ -20,10 +20,10 @@ const GalleryAdminComponent = () => {
   const [currentPage, setCurrentPage] = useState(0); // Current page for pagination
   const [totalPages, setTotalPages] = useState(0); // Total pages for pagination
 
-  // Fetch slideshow images
-  const fetchSlideshow = async () => {
+  // Fetch Image images
+  const fetchImage = async () => {
     try {
-      const response = await ImageService.getImageByType("Image"); // Fetch slideshow images
+      const response = await ImageService.getImageByType("Image"); // Fetch Image images
       setSlides(
         response.map((slide) => ({
           id: slide.id, // Use id for deletion
@@ -31,8 +31,8 @@ const GalleryAdminComponent = () => {
         }))
       );
     } catch (error) {
-      console.error("Error fetching slideshow:", error);
-      message.error("Failed to load slideshow images.");
+      console.error("Error fetching Image:", error);
+      message.error("Failed to load Image images.");
     }
   };
   // Fetch media library images
@@ -73,7 +73,7 @@ const GalleryAdminComponent = () => {
         fileName: response.filePath,
         type: "Image",
       };
-      await ImageService.addSlideshow([uploadedImage]); // Add image to slideshow
+      await ImageService.addImage([uploadedImage]); // Add image to Image
       setSlides((prevSlides) => [
         ...prevSlides,
         `${baseURLString}/uploads/images/${response.filePath}`,
@@ -88,22 +88,22 @@ const GalleryAdminComponent = () => {
 
   const handleAddFromLibrary = () => {
     if (selectedImages.length > 0) {
-      // Filter out images already in the slideshow
+      // Filter out images already in the Image
       const newImages = selectedImages.filter(
         (image) => !slides.some((slide) => slide.filePath === image)
       );
   
       if (newImages.length === 0) {
-        message.warning("All selected images are already in the slideshow.");
+        message.warning("All selected images are already in the Image.");
         return;
       }
   
       const requestBody = newImages.map((image) => ({
         fileName: image.split("/").pop(),
-        type: "Slideshow",
+        type: "Image",
       }));
   
-      ImageService.addSlideshow(requestBody)
+      ImageService.addImage(requestBody)
         .then(() => {
           setSlides((prevSlides) => [
             ...prevSlides,
@@ -112,13 +112,13 @@ const GalleryAdminComponent = () => {
               filePath: `${baseURLString}/uploads/images/${image.split("/").pop()}`,
             })),
           ]);
-          message.success("Slideshow updated successfully!");
+          message.success("Image updated successfully!");
           setIsModalOpen(false);
           setSelectedImages([]); // Clear selected images
         })
         .catch((error) => {
-          console.error("Error updating slideshow:", error);
-          message.error("Failed to update slideshow.");
+          console.error("Error updating Image:", error);
+          message.error("Failed to update Image.");
         });
     } else {
       message.warning("Please select at least one image from the media library.");
@@ -126,9 +126,9 @@ const GalleryAdminComponent = () => {
   };
 
   const toggleImageSelection = (filePath) => {
-    // Prevent selecting images already in the slideshow
+    // Prevent selecting images already in the Image
     if (slides.some((slide) => slide.filePath === filePath)) {
-      message.warning("This image is already in the slideshow.");
+      message.warning("This image is already in the Image.");
       return;
     }
   
@@ -183,7 +183,7 @@ const GalleryAdminComponent = () => {
   };
 
   useEffect(() => {
-    fetchSlideshow(); // Fetch slideshow images on component mount
+    fetchImage(); // Fetch Image images on component mount
   }, []);
 
   return (
@@ -260,7 +260,7 @@ const GalleryAdminComponent = () => {
       </div>
       {/* Modal for adding images */}
       <Modal
-        title="Add Image to Slideshow"
+        title="Add Image to Image"
         width={1000}
         visible={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
