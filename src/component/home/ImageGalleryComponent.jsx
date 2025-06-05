@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Spin, message, Modal } from "antd";
 import MenuComponent from "../MenuComponent";
 
-const baseURL = "http://localhost:8080/api/uploads/images/";
+
+const baseURL = import.meta.env.VITE_REACT_APP_API_URL +"/uploads/images/";
 
 const ImageGalleryComponent = () => {
   const [images, setImages] = useState([]);
