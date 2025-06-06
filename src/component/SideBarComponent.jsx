@@ -54,7 +54,7 @@ const SiderBarComponent = () => {
               label:<Link to="book">សៀវភៅ</Link>,
             },
             {
-              key: '2',
+              key: '3',
               icon: <BookOutlined style={{ color: '#292D77', fontSize: '20px' }} />,
               label:<Link to="publisher">អ្នកបោះពុម្ពផ្សាយ</Link>,
             },
