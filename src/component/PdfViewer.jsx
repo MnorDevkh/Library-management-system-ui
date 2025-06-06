@@ -17,8 +17,8 @@ const PdfViewer = () => {
   const canvasRef = useRef(null);
 
   const sanitizedFilename = filename.replace(/\.pdf$/, "");
-  // const pdfUrl = `${baseURL.defaults.baseURL}/uploads/image/${psanitizedFilename}.pdf`;
-   const pdfUrl = `${baseURL.defaults.baseURL}/uploads/pdf/${sanitizedFilename}`;
+  const pdfUrl = `${baseURL.defaults.baseURL}/uploads/images/${sanitizedFilename}.pdf`;
+  //  const pdfUrl = `${baseURL.defaults.baseURL}/uploads/pdf/${sanitizedFilename}`;
 
   useEffect(() => {
     const loadPdfFromUrl = async () => {

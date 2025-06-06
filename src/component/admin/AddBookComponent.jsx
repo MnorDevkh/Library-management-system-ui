@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  Breadcrumb,
   Button,
   Col,
   Form,
@@ -18,6 +19,7 @@ import {
 import {
   FilePdfOutlined,
   PlusOutlined,
+  UnorderedListOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
 import ImageService from "../../redux/service/ImageService";
@@ -33,6 +35,7 @@ import ShelfService from "../../redux/service/Shelf";
 import { setPublishers } from "../../redux/slices/PublisherSlice";
 import { baseURLString } from "../../redux/service/url";
 import { div } from "framer-motion/client";
+import { useNavigate } from "react-router-dom";
 const isPdf = (filePath) => filePath.toLowerCase().endsWith(".pdf");
 
 const { TextArea } = Input;
@@ -64,6 +67,7 @@ const AddBookComponent = () => {
   const [pdfPath, setPdfPath] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const info = useCallback(
     (text) => {
@@ -150,6 +154,7 @@ const AddBookComponent = () => {
       message.error("Failed to add book.");
     }
   };
+
 
   const handleUploadChange = async ({ fileList }) => {
     setFileList(fileList);
@@ -308,11 +313,29 @@ const AddBookComponent = () => {
       message.error("Failed to upload PDF.");
     }
   };
+    const books = () => {
+    navigate("/admin/books");
+  };
+
 
   return (
     <>
       {contextHolder}
       {loading && <LoadingComponent />}
+
+      <div className="p-6">
+        <div className="flex justify-between items-center mb-4">
+          <Breadcrumb items={[{ title: "admin" }, { title: "book" }]} />
+          <Button
+            type="primary"
+            icon={<UnorderedListOutlined />}
+            onClick={books}
+          >
+            បញ្ជីសៀវភៅ
+          </Button>
+        </div>
+        <h1 className="text-2xl font-semibold text-blue-500">បន្ថែមសៀវភៅ</h1>
+      </div>
       <div className="grid grid-cols-2 gap-4 p-4">
         <Form
           layout="vertical"
@@ -485,7 +508,6 @@ const AddBookComponent = () => {
                 </Select>
               </Form.Item>
             </Col>
-            
           </Row>
           <Form.Item>
             <Button type="primary" htmlType="submit">

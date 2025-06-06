@@ -57,6 +57,8 @@ const AddAuthorComponent = () => {
     }
   };
   const fetchMedia = async (page) => {
+    console.log("baseURLString", baseURLString);
+    
     try {
       setLoading(true);
       if (page === 0) {
@@ -88,7 +90,7 @@ const AddAuthorComponent = () => {
   };
 
   const listAuthor = () => {
-    navigate("/admin/list-author");
+    navigate("/admin/author");
   };
   // Handle image upload
   const handleImageUpload = async (file) => {
@@ -205,6 +207,7 @@ const AddAuthorComponent = () => {
             style={{ cursor: "pointer" }}
           >
             {imagePath ? (
+              
               <div>
                 <Image
                   width={200}

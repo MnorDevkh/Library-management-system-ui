@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Spin, message, Modal } from "antd";
 import MenuComponent from "../MenuComponent";
 
-
-const baseURL = import.meta.env.VITE_REACT_APP_API_URL +"/uploads/images/";
+const baseURL = import.meta.env.VITE_REACT_APP_API_URL + "/uploads/images/list";
 
 const ImageGalleryComponent = () => {
   const [images, setImages] = useState([]);
@@ -12,10 +11,12 @@ const ImageGalleryComponent = () => {
   const [modalImg, setModalImg] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/image/Image")
+    fetch(baseURL)
       .then((res) => res.json())
       .then((data) => {
-        setImages(data);
+        console.log("Fetched images:", data);
+
+        setImages(data.images);
         setLoading(false);
       })
       .catch(() => {
@@ -51,7 +52,7 @@ const ImageGalleryComponent = () => {
         }}
       ></section>
       <MenuComponent />
-      <h2 className="text-2xl font-bold mb-4">Image Gallery</h2>
+      <h4 className="text-2xl font-bold mb-4">កម្រងរូបភាព</h4>
       {loading ? (
         <Spin />
       ) : (
@@ -64,11 +65,11 @@ const ImageGalleryComponent = () => {
             margin: "0 auto",
           }}
         >
-          {images.map((img) => (
-            <div key={img.id}>
+          {images.map((img, idx) => (
+            <div key={idx}>
               <img
-                src={baseURL + img.fileName}
-                alt={img.fileName}
+                src={img}
+                alt={`Gallery ${idx}`}
                 style={{
                   width: "100%",
                   display: "block",
@@ -80,7 +81,7 @@ const ImageGalleryComponent = () => {
                 onClick={() => handleImageClick(img)}
                 onError={(e) => {
                   if (!e.target.dataset.fallback) {
-                    e.target.src = "/no-image.png"; // Use a local fallback image in your public folder
+                    e.target.src = "/no-image.png";
                     e.target.dataset.fallback = "true";
                   }
                 }}

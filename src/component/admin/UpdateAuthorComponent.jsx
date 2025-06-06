@@ -64,7 +64,7 @@ const UpdateAuthorComponent = () => {
       const authorData = { ...values, image: imagePath };
       await AuthorService.updateAuthor(authorId, authorData);
       message.success("Author updated successfully!");
-      navigate("/admin/list-author");
+      navigate("/admin/author");
     } catch (error) {
       console.error("Error updating author:", error);
       message.error("Error updating author!");
@@ -72,7 +72,7 @@ const UpdateAuthorComponent = () => {
   };
 
   const listAuthor = () => {
-    navigate("/admin/list-author");
+    navigate("/admin/author");
   };
   const fetchMedia = async (page) => {
     try {

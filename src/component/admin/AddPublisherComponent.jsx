@@ -44,7 +44,7 @@ const AddPublisherComponent = () => {
   const onFinish = async (values) => {
     try {
       const data = { ...values, image: imagePath };
-      await PublisherService.createPublisher(data);
+      await PublisherService.addPublisher(data);
       message.success("Publisher added successfully!");
       form.resetFields();
       setImagePath("");

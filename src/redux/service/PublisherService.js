@@ -29,5 +29,13 @@ const getPublisherById = async (publisherId) => {
     throw error; // Handle the error here
   }
 };
-const PublisherService = { getAllPublicher,updatePublisher,getPublisherById };
+const addPublisher = async (payload) => {
+  try {
+    const response = await api.post("/publishers", payload);
+    return response.data;
+  } catch (error) {
+    throw error; // Handle the error here
+  }
+};
+const PublisherService = { getAllPublicher,updatePublisher,getPublisherById,addPublisher };
 export default PublisherService;

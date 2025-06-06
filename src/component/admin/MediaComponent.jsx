@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { Image, Button, message, Modal, Upload } from "antd"; // Import Ant Design components
-import { FilePdfOutlined, DeleteOutlined, ExclamationCircleOutlined, UploadOutlined, PlusOutlined } from "@ant-design/icons"; // Import Ant Design icons
+import {
+  FilePdfOutlined,
+  DeleteOutlined,
+  ExclamationCircleOutlined,
+  UploadOutlined,
+  PlusOutlined,
+} from "@ant-design/icons"; // Import Ant Design icons
 import ImageService from "../../redux/service/ImageService";
 import { m } from "framer-motion";
 
@@ -11,18 +17,22 @@ const MediaComponent = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchMedia(currentPage);
-  }, [currentPage]);
+  }, [currentPage,media]);
 
   const fetchMedia = async (page) => {
     try {
       setLoading(true);
       const response = await ImageService.getListMedia(page, 10);
-  
-      if (response.data && Array.isArray(response.data.images) && response.data.images.length > 0) {
+
+      if (
+        response.data &&
+        Array.isArray(response.data.images) &&
+        response.data.images.length > 0
+      ) {
         // Replace the media list with the new data
         setMedia(response.data.images);
         setTotalPages(response.data.totalPages || 0); // Ensure totalPages is set even if undefined
@@ -43,6 +53,7 @@ const MediaComponent = () => {
     try {
       const response = await ImageService.upload(file); // Upload the image
       message.success("Image uploaded successfully!");
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Error uploading image:", error);
       message.error("Failed to upload image.");
@@ -65,8 +76,10 @@ const MediaComponent = () => {
       cancelText: "No",
       onOk: async () => {
         try {
-          await ImageService.deleteMedia(fileName); 
-          setMedia((prevMedia) => prevMedia.filter((mediaItem) => mediaItem !== item)); // Remove the deleted item from the list
+          await ImageService.deleteMedia(fileName);
+          setMedia((prevMedia) =>
+            prevMedia.filter((mediaItem) => mediaItem !== item)
+          ); // Remove the deleted item from the list
           message.success("Media deleted successfully!");
         } catch (error) {
           console.error("Error deleting media:", error);
@@ -84,10 +97,15 @@ const MediaComponent = () => {
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {media.map((item, index) => (
-          <div key={index} className="border p-2 rounded flex flex-col items-center relative">
+          <div
+            key={index}
+            className="border p-2 rounded flex flex-col items-center relative"
+          >
             {isPdf(item) ? (
               <div className="flex flex-col items-center">
-                <FilePdfOutlined style={{ fontSize: "48px", color: "#FF4D4F" }} />
+                <FilePdfOutlined
+                  style={{ fontSize: "48px", color: "#FF4D4F" }}
+                />
                 <a
                   href={item}
                   target="_blank"
@@ -103,7 +121,7 @@ const MediaComponent = () => {
                 alt={`Media ${index}`}
                 className="w-full h-auto object-cover rounded"
                 preview={{
-                  mask: <span>Preview</span>, 
+                  mask: <span>Preview</span>,
                 }}
               />
             )}
@@ -127,7 +145,7 @@ const MediaComponent = () => {
             setCurrentPage(0); // Reset current page
           }}
         >
-          Add New Slide
+          Add Media
         </Button>
       </div>
       <div className="flex justify-center mt-4">
@@ -141,24 +159,27 @@ const MediaComponent = () => {
           </Button>
         )}
       </div>
+
       <Modal
-        title="Add Image to Slideshow"
+        title="ជ្រើសរើសឯកសារមេឌៀ"
         width={1000}
-        visible={isModalOpen}
-        onCancel={() => setIsModalOpen(false)}
+        open={isModalOpen}
+        onCancel={() => {
+          setIsModalOpen(false);
+          fetchMedia(0); // Re-fetch media when modal closes
+          setCurrentPage(0); // Reset current page if needed
+        }}
         footer={null}
       >
-
-            <Upload
-              beforeUpload={(file) => {
-                handleImageUpload(file); // Handle image upload
-                return false; // Prevent automatic upload
-              }}
-              maxCount={1}
-            >
-              <Button icon={<UploadOutlined />}>Upload Image</Button>
-            </Upload>
-        
+        <Upload
+          beforeUpload={(file) => {
+            handleImageUpload(file);
+            return false;
+          }}
+          maxCount={1}
+        >
+          <Button icon={<UploadOutlined />}>Upload Image</Button>
+        </Upload>
       </Modal>
     </div>
   );

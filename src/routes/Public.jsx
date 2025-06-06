@@ -38,6 +38,7 @@ import AddPublisherComponent from "../component/admin/AddPublisherComponent.jsx"
 import UpdatePublisherComponent from "../component/admin/UpdatePublisherComponent.jsx";
 import UpdateShelfComponent from "../component/admin/UpdateShiftComponent.jsx";
 import ImageGalleryComponent from "../component/home/ImageGalleryComponent.jsx";
+import MediaComponent from "../component/admin/MediaComponent.jsx";
 
 const RouterComponentPublic = () => {
   return (
@@ -79,6 +80,7 @@ const RouterComponentPublic = () => {
           <Route path="add-author" element={<AddAuthorComponent />} />
           <Route path="categorise" element={<CategoriesComponent />} />
           <Route path="add-Category" element={<AddCategoryComponent />} />
+          <Route path="media" element={<MediaComponent />} />
           <Route
             path="update-category/:categoryId"
             element={<UpdateCategoryComponent />}

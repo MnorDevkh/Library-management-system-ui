@@ -62,10 +62,10 @@ const ListShelfComponent = () => {
           <a className="text-blue-600" onClick={() => handleView(record)}>
             <EyeOutlined /> View
           </a>
-          <a className="text-yellow-600" onClick={() => handleEdit(record.shelfId)}>
+          <a className="text-yellow-600" onClick={() => handleEdit(record.bookshelfId)}>
             Edit
           </a>
-          <a className="text-red-600" onClick={() => showDeleteConfirm(record.shelfId)}>
+          <a className="text-red-600" onClick={() => showDeleteConfirm(record.bookshelfId)}>
             <DeleteOutlined /> Delete
           </a>
         </Space>

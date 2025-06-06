@@ -100,9 +100,17 @@ const getpdf = async (fileName) => {
     throw error;
   }
 }
+const addImage = async (data) => {
+  try {
+    const response = await api.post(`/image`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const ImageService = {
-  upload,getUrl,getListMedia,deleteMedia,addSlideshow,getImageByType,getpdf,removeImage,removeImageList
+  upload,getUrl,getListMedia,deleteMedia,addSlideshow,getImageByType,getpdf,removeImage,removeImageList,addImage
 };
 
 export default ImageService;
