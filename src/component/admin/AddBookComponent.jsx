@@ -142,7 +142,7 @@ const AddBookComponent = () => {
         cover: imagePath,
         pdfBook: pdfPath,
       };
-      console.log(bookData);
+      navigate("/admin/books");
       bookData;
       await BookService.addBook(bookData);
       setLoading(false);

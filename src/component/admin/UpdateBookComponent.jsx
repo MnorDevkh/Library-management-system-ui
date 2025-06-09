@@ -202,7 +202,7 @@ const UpdateBookComponent = () => {
       await BookService.updateBook(bookId, bookData);
       setLoading(false);
       message.success("Book updated successfully!");
-      navigate("/admin/list-book");
+      navigate("/admin/books");
     } catch (error) {
       setLoading(false);
       console.error("Error updating book:", error);

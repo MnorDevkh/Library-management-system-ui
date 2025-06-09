@@ -39,6 +39,8 @@ import UpdatePublisherComponent from "../component/admin/UpdatePublisherComponen
 import UpdateShelfComponent from "../component/admin/UpdateShiftComponent.jsx";
 import ImageGalleryComponent from "../component/home/ImageGalleryComponent.jsx";
 import MediaComponent from "../component/admin/MediaComponent.jsx";
+import BorrowComponent from "../component/admin/BorrowComponent.jsx";
+import AddBorrowComponent from "../component/admin/AddBorrowComponent.jsx";
 
 const RouterComponentPublic = () => {
   return (
@@ -74,7 +76,7 @@ const RouterComponentPublic = () => {
         }
       >
         <Route path="/admin" element={<AdminLayoutComponent />}>
-          <Route path="book" element={<BookComponent />} />
+          <Route path="books" element={<BookComponent />} />
           <Route path="add-book" element={<AddBookComponent />} />
           <Route path="author" element={<AuthorComponent />} />
           <Route path="add-author" element={<AddAuthorComponent />} />
@@ -115,6 +117,10 @@ const RouterComponentPublic = () => {
             path="update-publisher/:id"
             element={<UpdatePublisherComponent />}
           />
+
+          {/*  borrowig */}
+          <Route path="borrowing-list" element={<BorrowComponent />} />
+          <Route path="add-borrowing" element={<AddBorrowComponent />} />
         </Route>
       </Route>
     </Routes>
