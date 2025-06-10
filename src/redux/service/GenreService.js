@@ -1,7 +1,5 @@
 import api from './api';
 
-
-
     const getAllGenres = async (page, size, sortBy)=> {
         const response = await api.get(`genres?page=${page}&size=${size}&sortBy=${sortBy}`);
         return response.data;

@@ -7,6 +7,7 @@ import authorReducer from "./slices/AuthorSlice";
 import publisherReducer from "./slices/PublisherSlice";
 import  staffReducer  from "./slices/StaffSlice";
 import borrowReducer from "./slices/borrowSlice";
+import userReducer from "./slices/UserSlice";
 
 const store= configureStore({
     reducer: {
@@ -18,7 +19,7 @@ const store= configureStore({
         publicsher: publisherReducer,
         staff: staffReducer,
         borrow: borrowReducer,
-        // user: userReducer,
+        user: userReducer,
     }
 })
 export default store

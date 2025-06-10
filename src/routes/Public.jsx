@@ -41,6 +41,7 @@ import ImageGalleryComponent from "../component/home/ImageGalleryComponent.jsx";
 import MediaComponent from "../component/admin/MediaComponent.jsx";
 import BorrowComponent from "../component/admin/BorrowComponent.jsx";
 import AddBorrowComponent from "../component/admin/AddBorrowComponent.jsx";
+import UserComponent from "../component/admin/UserComponent.jsx";
 
 const RouterComponentPublic = () => {
   return (
@@ -121,6 +122,10 @@ const RouterComponentPublic = () => {
           {/*  borrowig */}
           <Route path="borrowing-list" element={<BorrowComponent />} />
           <Route path="add-borrowing" element={<AddBorrowComponent />} />
+
+          {/*  user */}
+          <Route path="user-list" element={<UserComponent />} />
+          <Route path="get-contact" element={<GetContact />} />
         </Route>
       </Route>
     </Routes>
