@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Space, Table, message, Button, Breadcrumb, Modal } from "antd";
-import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Divider, Space, Table, message, Button, Breadcrumb, Modal, Descriptions } from "antd";
+import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, EyeOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BookService from "../../redux/service/BookService";
 import { setAllBook } from "../../redux/slices/BookSlice";
 import baseURL from "../../redux/service/url";
 
-const columns = (showDeleteConfirm, handleUpdate) => [
+const columns = (showDeleteConfirm, handleUpdate, handleView) => [
   {
     title: "No",
     dataIndex: "index",
@@ -46,6 +46,9 @@ const columns = (showDeleteConfirm, handleUpdate) => [
     key: "action",
     render: (record) => (
       <Space size="middle">
+        <Button icon={<EyeOutlined />} onClick={() => handleView(record.bookId)}>
+          View
+        </Button>
         <a className="text-yellow-600" onClick={() => handleUpdate(record)}>
           <EditOutlined /> Update
         </a>
@@ -63,6 +66,10 @@ const BookComponent = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.book.allBook);
   const navigate = useNavigate();
+
+  // View Modal State
+  const [viewModalOpen, setViewModalOpen] = useState(false);
+  const [viewData, setViewData] = useState(null);
 
   const fetchData = async (page = 1, pageSize = 10) => {
     try {
@@ -98,6 +105,7 @@ const BookComponent = () => {
   const handleUpdate = (book) => {
     navigate(`/admin/update-book/${book.bookId}`);
   };
+
   const showDeleteConfirm = (bookId) => {
     confirm({
       title: 'Are you sure you want to delete this author?',
@@ -113,6 +121,21 @@ const BookComponent = () => {
         console.log('Cancel');
       },
     })
+  };
+
+  // View handler
+  const handleView = async (bookId) => {
+    
+    try {
+      // Replace this with your actual service call to get bookshelf/book detail by ID
+      const res = await BookService.getBookById(bookId); 
+      console.log("View Data:", res.data);
+      
+      setViewData(res.data);
+      setViewModalOpen(true);
+    } catch (error) {
+      message.error("មិនអាចទាញយកពត៌មានបានទេ");
+    }
   };
 
   const addNew = () => {
@@ -139,7 +162,7 @@ const BookComponent = () => {
       </div>
       <Divider />
       <Table
-        columns={columns(showDeleteConfirm, handleUpdate)}
+        columns={columns(showDeleteConfirm, handleUpdate, handleView)}
         dataSource={data.data}
         rowKey={(record) => record.bookId}
         loading={loading}
@@ -153,6 +176,72 @@ const BookComponent = () => {
           },
         }}
       />
+<Modal
+  open={viewModalOpen}
+  title="Book Detail"
+  onCancel={() => setViewModalOpen(false)}
+  footer={null}
+  width={800}
+>
+  {viewData && (
+    <Descriptions bordered column={1} size="small">
+      <Descriptions.Item label="Title">{viewData.title}</Descriptions.Item>
+      <Descriptions.Item label="ISBN">{viewData.isbn}</Descriptions.Item>
+      <Descriptions.Item label="Description">{viewData.description}</Descriptions.Item>
+      <Descriptions.Item label="Publication Year">{viewData.publicationYear}</Descriptions.Item>
+      <Descriptions.Item label="Language">{viewData.language}</Descriptions.Item>
+      <Descriptions.Item label="Total Copies">{viewData.totalCopies}</Descriptions.Item>
+      <Descriptions.Item label="Available Copies">{viewData.availableCopies}</Descriptions.Item>
+      <Descriptions.Item label="Date">{viewData.date}</Descriptions.Item>
+      <Descriptions.Item label="Cover">
+        {viewData.cover ? (
+          <img
+            src={
+              viewData.cover.startsWith("http")
+                ? viewData.cover
+                : `${baseURL.defaults.baseURL}/uploads/images/${viewData.cover}`
+            }
+            alt="Book Cover"
+            style={{ width: 100, height: 100, objectFit: "cover" }}
+          />
+        ) : "No Cover"}
+      </Descriptions.Item>
+      <Descriptions.Item label="Authors">
+        {Array.isArray(viewData.authorDtos)
+          ? viewData.authorDtos.map(a => `${a.firstName} ${a.lastName}`).join(", ")
+          : "No Authors"}
+      </Descriptions.Item>
+      <Descriptions.Item label="Genre">
+        {viewData.genreDTO
+          ? viewData.genreDTO.genreName
+          : "-"}
+      </Descriptions.Item>
+      <Descriptions.Item label="Publisher">
+        {viewData.publisherDto
+          ? viewData.publisherDto.publisherName
+          : "-"}
+      </Descriptions.Item>
+      <Descriptions.Item label="Bookshelf">
+        {viewData.bookshelf
+          ? `${viewData.bookshelf.bookshelfName} (${viewData.bookshelf.location})`
+          : "-"}
+      </Descriptions.Item>
+      <Descriptions.Item label="Bookshelf Image">
+        {viewData.bookshelf && viewData.bookshelf.image ? (
+          <img
+            src={
+              viewData.bookshelf.image.startsWith("http")
+                ? viewData.bookshelf.image
+                : `${baseURL.defaults.baseURL}/uploads/images/${viewData.bookshelf.image}`
+            }
+            alt="Bookshelf"
+            style={{ width: 100, height: 100, objectFit: "cover" }}
+          />
+        ) : "No Image"}
+      </Descriptions.Item>
+    </Descriptions>
+  )}
+</Modal>
     </div>
   );
 };

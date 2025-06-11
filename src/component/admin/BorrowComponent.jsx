@@ -1,12 +1,25 @@
-import  { useEffect, useState } from "react";
-import { Table, Divider, Breadcrumb, Button, Space, Modal, message } from "antd";
-import { DeleteOutlined, ExclamationCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { useEffect, useState } from "react";
+import {
+  Table,
+  Divider,
+  Breadcrumb,
+  Button,
+  Space,
+  Modal,
+  message,
+  Descriptions,
+} from "antd";
+import {
+  DeleteOutlined,
+  ExclamationCircleOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BorrowService from "../../redux/service/borrowService";
 import { setBorrowings } from "../../redux/slices/borrowSlice";
 
-const columns = (showDeleteConfirm, handleUpdate) => [
+const columns = (showDeleteConfirm, handleUpdate, handleView) => [
   {
     title: "No",
     dataIndex: "index",
@@ -14,27 +27,7 @@ const columns = (showDeleteConfirm, handleUpdate) => [
     render: (text, record, index) => index + 1,
   },
   {
-    title: "Borrow Date",
-    dataIndex: "borrowDate",
-    key: "borrowDate",
-  },
-  {
-    title: "Due Date",
-    dataIndex: "dueDate",
-    key: "dueDate",
-  },
-  {
-    title: "Return Date",
-    dataIndex: "returnDate",
-    key: "returnDate",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-  },
-  {
-    title: "Borrower",
+    title: "ឈ្មោះអ្នកខ្ចី",
     dataIndex: "borrower",
     key: "borrower",
     render: (borrower) =>
@@ -43,25 +36,51 @@ const columns = (showDeleteConfirm, handleUpdate) => [
         : "",
   },
   {
-    title: "Staff",
-    dataIndex: "staff",
-    key: "staff",
-    render: (staff) =>
-      staff
-        ? `${staff.firstName || ""} ${staff.lastName || ""}`.trim()
-        : "",
-  },
-  {
-    title: "Book Title",
+    title: "សៀវភៅ",
     dataIndex: ["book", "title"],
     key: "bookTitle",
     render: (text, record) => record.book?.title || "",
   },
   {
-    title: "Action",
+    title: "ឈ្មោះបុគ្គលិក",
+    dataIndex: "staff",
+    key: "staff",
+    render: (staff) =>
+      staff ? `${staff.firstName || ""} ${staff.lastName || ""}`.trim() : "",
+  },
+  {
+    title: "ថ្ងៃខ្ចី",
+    dataIndex: "borrowDate",
+    key: "borrowDate",
+  },
+  {
+    title: "ថ្ងៃផុតកំណត់",
+    dataIndex: "dueDate",
+    key: "dueDate",
+  },
+  {
+    title: "ថ្ងៃត្រឡប់",
+    dataIndex: "returnDate",
+    key: "returnDate",
+  },
+  {
+    title: "ស្ថានភាព",
+    dataIndex: "status",
+    key: "status",
+  },
+   {
+    title: "សំណងទឹកប្រាក់",
+    dataIndex: "fineAmount",
+    key: "fineAmount",
+  },
+  {
+    title: "សកម្ម",
     key: "action",
     render: (record) => (
       <Space size="middle">
+        <Button type="link" onClick={() => handleView(record.borrowingID)}>
+          View
+        </Button>
         <a className="text-yellow-600" onClick={() => handleUpdate(record)}>
           Update
         </a>
@@ -81,8 +100,9 @@ const BorrowComponent = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const borrowingsData = useSelector((state) => state.borrow.borrowings);
-  console.log("Borrowings from Redux:", borrowingsData);
-  
+  const [viewModalOpen, setViewModalOpen] = useState(false);
+  const [viewData, setViewData] = useState(null);
+
   const navigate = useNavigate();
   const [pagination, setPagination] = useState({
     current: 1,
@@ -93,11 +113,15 @@ const BorrowComponent = () => {
   const fetchData = async (page = 1, size = 10) => {
     setLoading(true);
     try {
-      const result = await BorrowService.getAllBorrowings(page, size, "borrowingID");
+      const result = await BorrowService.getAllBorrowings(
+        page,
+        size,
+        "borrowingID"
+      );
       dispatch(setBorrowings(result.data));
-      console.log("Borrowings Data:", result.data)
+      console.log("Borrowings Data:", result.data);
       setBorrowings(result.data);
-      
+
       setPagination({
         current: result.page,
         pageSize: result.size,
@@ -113,7 +137,15 @@ const BorrowComponent = () => {
     fetchData();
     // eslint-disable-next-line
   }, [dispatch]);
-
+  const handleView = async (borrowingID) => {
+    try {
+      const res = await BorrowService.getBorrowingById(borrowingID);
+      setViewData(res.data);
+      setViewModalOpen(true);
+    } catch {
+      message.error("មិនអាចទាញយកពត៌មានបានទេ");
+    }
+  };
   const handleDelete = async (borrowingID) => {
     try {
       await BorrowService.deleteBorrowing(borrowingID);
@@ -149,12 +181,7 @@ const BorrowComponent = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <Breadcrumb
-          items={[
-            { title: "Admin" },
-            { title: "Borrowings" },
-          ]}
-        />
+        <Breadcrumb items={[{ title: "Admin" }, { title: "Borrowings" }]} />
         <Button type="primary" icon={<PlusOutlined />} onClick={addNew}>
           បន្ថែមការខ្ចីសៀវភៅ
         </Button>
@@ -166,7 +193,7 @@ const BorrowComponent = () => {
       </div>
       <Divider />
       <Table
-        columns={columns(showDeleteConfirm, handleUpdate)}
+        columns={columns(showDeleteConfirm, handleUpdate, handleView)}
         dataSource={borrowingsData}
         rowKey={(record) => record.borrowingID}
         loading={loading}
@@ -179,6 +206,49 @@ const BorrowComponent = () => {
           },
         }}
       />
+
+      <Modal
+        open={viewModalOpen}
+        title="Borrowing Detail"
+        onCancel={() => setViewModalOpen(false)}
+        footer={null}
+        width={700}
+      >
+        {viewData && (
+          <Descriptions bordered column={1} size="small">
+            <Descriptions.Item label="Borrow Date">
+              {viewData.borrowDate}
+            </Descriptions.Item>
+            <Descriptions.Item label="Due Date">
+              {viewData.dueDate}
+            </Descriptions.Item>
+            <Descriptions.Item label="Return Date">
+              {viewData.returnDate}
+            </Descriptions.Item>
+            <Descriptions.Item label="Status">
+              {viewData.status}
+            </Descriptions.Item>
+            <Descriptions.Item label="Fine Amount">
+              {viewData.fineAmount ?? "-"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Borrower">
+              {viewData.borrower
+                ? `${viewData.borrower.firstName} ${viewData.borrower.lastName} (${viewData.borrower.email})`
+                : "-"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Staff">
+              {viewData.staff
+                ? `${viewData.staff.firstName} ${viewData.staff.lastName} (${viewData.staff.email})`
+                : "-"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Book">
+              {viewData.book
+                ? `${viewData.book.title} (ISBN: ${viewData.book.isbn})`
+                : "-"}
+            </Descriptions.Item>
+          </Descriptions>
+        )}
+      </Modal>
     </div>
   );
 };

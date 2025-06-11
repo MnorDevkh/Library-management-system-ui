@@ -35,7 +35,7 @@ const addBorrowing = async (payload) => {
 // Update a borrowing
 const updateBorrowing = async (borrowingId, payload) => {
   try {
-    const response = await api.put(`/borrowings/${borrowingId}`, payload);
+    const response = await api.put(`/borrowings?id=${borrowingId}`, payload);
     return response.data;
   } catch (error) {
     throw error;

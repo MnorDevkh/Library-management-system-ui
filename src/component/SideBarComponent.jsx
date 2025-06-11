@@ -95,7 +95,7 @@ const SiderBarComponent = () => {
         },
         {
           key: "2-2",
-          label: <Link to="borrowing-list">តារាងខ្ចីសៀវភៅ</Link>,
+          label: <Link to="borrowings">តារាងខ្ចីសៀវភៅ</Link>,
         },
         {
           key: "2-3",
@@ -128,7 +128,7 @@ const SiderBarComponent = () => {
     {
       key: "2-2",
       icon: <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="borrowing-list">តារាងខ្ចីសៀវភៅ</Link>,
+      label: <Link to="borrowings">តារាងខ្ចីសៀវភៅ</Link>,
     },
   ];
 
