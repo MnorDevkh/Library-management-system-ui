@@ -31,85 +31,98 @@ const SiderBarComponent = () => {
   const adminMenu = [
     {
       key: "1",
-      icon: <RiUserSettingsLine style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="contact">Admin Dashboard</Link>,
-    },
-    {
-      key: "3",
-      icon: <BookOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="books">សៀវភៅ</Link>,
-    },
-    {
-      key: "4",
-      icon: <BookOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="publisher">អ្នកបោះពុម្ពផ្សាយ</Link>,
-    },
-    {
-      key: "5",
-      icon: <BookOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="user-list">អ្នកប្រើប្រាស់</Link>,
-    },
-    {
-      key: "12",
-      icon: <AuditOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="author">អ្នកនិពន្ធ</Link>,
-    },
-    {
-      key: "15",
-      icon: <TagsOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="categorise">ប្រភេទសៀវភៅ</Link>,
-    },
-    {
-      key: "16",
-      icon: <TagsOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="shelf">ធ្នើរដាកសៀវភៅ</Link>,
-    },
-    {
-      key: "18",
-      icon: <TruckOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="media">មេឌៀ</Link>,
-    },
-    {
-      key: "21",
-      icon: <ShoppingCartOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="staff">មន្ត្រីផ្នែកបណ្ណាល័យ</Link>,
-    },
-    {
-      key: "22",
-      icon: <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="slide">រូបភាពស្លាយ</Link>,
-    },
-    {
-      key: "23",
-      icon: <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <Link to="gallery">រូបភាព</Link>,
-    },
-    {
-      key: "2",
-      icon: <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
-      label: <span>គ្រប់គ្រងសៀវភៅក្នុងបណ្ណាល័យ</span>,
+      icon: (
+        <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />
+      ),
+      label: <span>គ្រប់គ្រង់ ការអានលើ វេបសាយ</span>,
       children: [
         {
           key: "2-1",
-          label: <Link to="add-book">បន្ថែមសៀវភៅ</Link>,
+          label: <Link to="list-ebook">បញ្ជីសៀវភៅ អេឡិចត្រូនិច</Link>,
         },
         {
           key: "2-2",
           label: <Link to="borrowings">តារាងខ្ចីសៀវភៅ</Link>,
         },
+      ],
+    },
+    {
+      key: "2",
+      icon: (
+        <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />
+      ),
+      label: <span>គ្រប់គ្រងក្នុងបណ្ណាល័យ</span>,
+      children: [
         {
-          key: "2-3",
-          label: <Link to="add-author">បន្ថែមអ្នកនិពន្ធ</Link>,
+          key: "1-2",
+          icon: <BookOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
+          label: <Link to="books">សៀវភៅ</Link>,
         },
         {
-          key: "2-4",
-          label: <Link to="add-Category">បន្ថែមប្រភេទសៀវភៅ</Link>,
+          key: "1-3",
+          icon: <BookOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
+          label: <Link to="publisher">អ្នកបោះពុម្ពផ្សាយ</Link>,
         },
         {
-          key: "2-5",
-          label: <Link to="add-shelf">បន្ថែមធ្នើរដាកសៀវភៅ</Link>,
+          key: "1-5",
+          icon: (
+            <AuditOutlined style={{ color: "#292D77", fontSize: "20px" }} />
+          ),
+          label: <Link to="author">អ្នកនិពន្ធ</Link>,
+        },
+        {
+          key: "1-6",
+          icon: <TagsOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
+          label: <Link to="categorise">ប្រភេទសៀវភៅ</Link>,
+        },
+        {
+          key: "1-7",
+          icon: <TagsOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
+          label: <Link to="shelf">ធ្នើរដាកសៀវភៅ</Link>,
+        },
+        {
+          key: "1-8",
+          icon: (
+            <TruckOutlined style={{ color: "#292D77", fontSize: "20px" }} />
+          ),
+          label: <Link to="media">មេឌៀ</Link>,
+        },
+        {
+          key: "1-9",
+          icon: (
+            <ShoppingCartOutlined
+              style={{ color: "#292D77", fontSize: "20px" }}
+            />
+          ),
+          label: <Link to="staff">មន្ត្រីផ្នែកបណ្ណាល័យ</Link>,
+        },
+        {
+          key: "1-10",
+          icon: (
+            <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />
+          ),
+          label: <Link to="slide">រូបភាពស្លាយ</Link>,
+        },
+        {
+          key: "1-11",
+          icon: (
+            <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />
+          ),
+          label: <Link to="gallery">រូបភាព</Link>,
         },
       ],
+    },
+    {
+      key: "1-1",
+      icon: (
+        <RiUserSettingsLine style={{ color: "#292D77", fontSize: "20px" }} />
+      ),
+      label: <Link to="contact">ទំនាក់ទំនង</Link>,
+    },
+    {
+      key: "1-4",
+      icon: <BookOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
+      label: <Link to="user-list">អ្នកប្រើប្រាស់</Link>,
     },
   ];
 
@@ -122,12 +135,16 @@ const SiderBarComponent = () => {
     },
     {
       key: "23",
-      icon: <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
+      icon: (
+        <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />
+      ),
       label: <Link to="gallery">រូបភាព</Link>,
     },
     {
       key: "2-2",
-      icon: <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />,
+      icon: (
+        <FileImageOutlined style={{ color: "#292D77", fontSize: "20px" }} />
+      ),
       label: <Link to="borrowings">តារាងខ្ចីសៀវភៅ</Link>,
     },
   ];

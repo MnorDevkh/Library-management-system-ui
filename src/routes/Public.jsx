@@ -42,6 +42,9 @@ import MediaComponent from "../component/admin/MediaComponent.jsx";
 import BorrowComponent from "../component/admin/BorrowComponent.jsx";
 import AddBorrowComponent from "../component/admin/AddBorrowComponent.jsx";
 import UserComponent from "../component/admin/UserComponent.jsx";
+import UpdateBorrowingComponent from "../component/admin/UpdateBorrowingComponent.jsx";
+import AddEBookComponent from "../component/admin/AddEBookComponent.jsx";
+import ListEBookComponent from "../component/admin/ListEBookComponent.jsx";
 
 const RouterComponentPublic = () => {
   return (
@@ -120,12 +123,17 @@ const RouterComponentPublic = () => {
           />
 
           {/*  borrowig */}
-          <Route path="borrowing-list" element={<BorrowComponent />} />
+          <Route path="borrowings" element={<BorrowComponent />} />
           <Route path="add-borrowing" element={<AddBorrowComponent />} />
+          <Route path="update-borrowing/:id" element={<UpdateBorrowingComponent />} />
 
           {/*  user */}
           <Route path="user-list" element={<UserComponent />} />
           <Route path="get-contact" element={<GetContact />} />
+
+          {/* E book */}
+          <Route path="add-ebook" element={<AddEBookComponent />} />
+          <Route path="list-ebook" element={<ListEBookComponent />} />
         </Route>
       </Route>
     </Routes>
