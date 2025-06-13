@@ -133,7 +133,7 @@ const RouterComponentPublic = () => {
 
           {/* E book */}
           <Route path="add-ebook" element={<AddEBookComponent />} />
-          <Route path="list-ebook" element={<ListEBookComponent />} />
+          <Route path="ebooks" element={<ListEBookComponent />} />
         </Route>
       </Route>
     </Routes>

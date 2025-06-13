@@ -73,7 +73,7 @@ const BookComponent = () => {
 
   const fetchData = async (page = 1, pageSize = 10) => {
     try {
-      const result = await BookService.getAllBook(page, pageSize, "bookId");
+      const result = await BookService.getAllBook(page, pageSize, "bookId", "BOOK");
       dispatch(setAllBook({
         data: result.data,
         currentPage: result.page,

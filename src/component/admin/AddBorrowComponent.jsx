@@ -19,7 +19,7 @@ const AddBorrowComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const booksRes = await BookService.getAllBook(1, 100, "bookId");
+        const booksRes = await BookService.getAllBook(1, 100, "bookId", "BOOK");
         console.log("Books Response:", booksRes.data);
         if (booksRes.data) {
           booksRes.data.data = booksRes.data.map((book) => ({

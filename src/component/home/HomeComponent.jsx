@@ -39,7 +39,7 @@ const HomeComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await BookService.getAllBook(1, 9, "bookId");
+        const result = await BookService.getAllBook(1, 9, "bookId", "EBOOK");
         dispatch(setAllBook(result));
       } catch (error) {
         console.error("Error fetching books:", error);

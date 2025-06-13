@@ -73,7 +73,7 @@ const ListEBookComponent = () => {
 
   const fetchData = async (page = 1, pageSize = 10) => {
     try {
-      const result = await BookService.getAllBook(page, pageSize, "bookId");
+      const result = await BookService.getAllBook(page, pageSize, "bookId","EBOOK");
       dispatch(setAllBook({
         data: result.data,
         currentPage: result.page,
@@ -103,7 +103,7 @@ const ListEBookComponent = () => {
   };
 
   const handleUpdate = (book) => {
-    navigate(`/admin/update-book/${book.bookId}`);
+    navigate(`/admin/update-ebook/${book.bookId}`);
   };
 
   const showDeleteConfirm = (bookId) => {
@@ -139,7 +139,7 @@ const ListEBookComponent = () => {
   };
 
   const addNew = () => {
-    navigate('/admin/add-book');
+    navigate('/admin/add-ebook');
   };
 
   return (

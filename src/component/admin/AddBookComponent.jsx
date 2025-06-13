@@ -140,6 +140,7 @@ const AddBookComponent = () => {
       const bookData = {
         ...values,
         cover: imagePath,
+        bookType: "BOOK",
         pdfBook: pdfPath,
       };
       navigate("/admin/books");
@@ -370,17 +371,6 @@ const AddBookComponent = () => {
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                label="Description"
-                name="description"
-                rules={[
-                  { required: true, message: "Please input description" },
-                ]}
-              >
-                <TextArea rows={4} placeholder="Please input description" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
                 label="Publication Year"
                 name="publicationYear"
                 rules={[
@@ -393,8 +383,6 @@ const AddBookComponent = () => {
                 />
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={16}>
             <Col span={12}>
               <Form.Item
                 label="Language"
@@ -404,32 +392,18 @@ const AddBookComponent = () => {
                 <Input placeholder="Please input language" />
               </Form.Item>
             </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Total Copies"
-                name="totalCopies"
-                rules={[
-                  { required: true, message: "Please input total copies" },
-                ]}
-              >
-                <InputNumber
-                  placeholder="Please input total copies"
-                  style={{ width: "100%" }}
-                />
-              </Form.Item>
-            </Col>
           </Row>
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                label="Available Copies"
-                name="availableCopies"
+                label="Totle Copies"
+                name="totalCopies"
                 rules={[
-                  { required: true, message: "Please input available copies" },
+                  { required: true, message: "Please input totsl copies" },
                 ]}
               >
                 <InputNumber
-                  placeholder="Please input available copies"
+                  placeholder="Please input total copies"
                   style={{ width: "100%" }}
                 />
               </Form.Item>
@@ -506,6 +480,17 @@ const AddBookComponent = () => {
                     </Select.Option>
                   ))}
                 </Select>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Description"
+                name="description"
+                rules={[
+                  { required: true, message: "Please input description" },
+                ]}
+              >
+                <TextArea rows={4} placeholder="Please input description" />
               </Form.Item>
             </Col>
           </Row>

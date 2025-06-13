@@ -38,12 +38,9 @@ const SiderBarComponent = () => {
       children: [
         {
           key: "2-1",
-          label: <Link to="list-ebook">បញ្ជីសៀវភៅ អេឡិចត្រូនិច</Link>,
-        },
-        {
-          key: "2-2",
-          label: <Link to="borrowings">តារាងខ្ចីសៀវភៅ</Link>,
-        },
+          label: <Link to="ebooks">បញ្ជីសៀវភៅ អេឡិចត្រូនិច</Link>,
+        }
+       
       ],
     },
     {
@@ -110,6 +107,10 @@ const SiderBarComponent = () => {
           ),
           label: <Link to="gallery">រូបភាព</Link>,
         },
+         {
+          key: "2-2",
+          label: <Link to="borrowings">តារាងខ្ចីសៀវភៅ</Link>,
+        }
       ],
     },
     {

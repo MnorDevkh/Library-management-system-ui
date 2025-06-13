@@ -36,7 +36,7 @@ const GenreBookComponent = () => {
   // Fetch books by genre
   const fetchBooksByGenre = async () => {
     try {
-      const result = await BookService.getBooksByGenre(genreName, 1, 10, "bookId");
+      const result = await BookService.getBooksByGenre(genreName, 1, 10, "bookId", "EBOOK");
       console.log(result.data.pdfBook);
       
       const transformedBooks = result.data.map((book) => ({

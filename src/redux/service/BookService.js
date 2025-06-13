@@ -2,9 +2,9 @@
 import api from "./api";
 import apiAuth from "./apiAuth";
 
-const getAllBook = async (page, size, sortBy) => {
+const getAllBook = async (page, size, sortBy,type) => {
   try {
-    const response = await apiAuth.get(`/books?page=${page}&size=${size}&sortBy=${sortBy}`);
+    const response = await apiAuth.get(`/books?page=${page}&size=${size}&sortBy=${sortBy}&bookType=${type}`);
     return response.data;
   } catch (error) {
     // Handle the error here
@@ -14,6 +14,8 @@ const getAllBook = async (page, size, sortBy) => {
 
 const addBook = async (data) => {
   try {
+    console.log("Adding book with data:", data);
+    
     const response = await api.post(`/books`, data);
     return response.data;
   } catch (error) {
@@ -56,9 +58,9 @@ const addAuthor = async (data) => {
     throw error;
   }
 };
-const getBooksByGenre = async (genre, page = 1, size = 10, sortBy = "bookId") => {
+const getBooksByGenre = async (genre, page = 1, size = 10, sortBy = "bookId", type) => {
   try {
-    const response = await apiAuth.get(`/books/genre?genre=${genre}&page=${page}&size=${size}&sortBy=${sortBy}`);
+    const response = await apiAuth.get(`/books/genre?genre=${genre}&page=${page}&size=${size}&sortBy=${sortBy}&bookType=${type}`);
     return response.data;
   } catch (error) {
     throw error;

@@ -34,7 +34,7 @@ import { setAuthors } from "../../redux/slices/AuthorSlice";
 import ShelfService from "../../redux/service/Shelf";
 import { setPublishers } from "../../redux/slices/PublisherSlice";
 import { baseURLString } from "../../redux/service/url";
-import { div } from "framer-motion/client";
+import { div, tr } from "framer-motion/client";
 import { useNavigate } from "react-router-dom";
 const isPdf = (filePath) => filePath.toLowerCase().endsWith(".pdf");
 
@@ -140,11 +140,17 @@ const AddEBookComponent = () => {
       const bookData = {
         ...values,
         cover: imagePath,
+        bookType: "EBOOK",
         pdfBook: pdfPath,
       };
-      navigate("/admin/books");
-      bookData;
-      await BookService.addBook(bookData);
+      const res = await BookService.addBook(bookData);
+      console.log("Book added:", res);
+      if (res.status !== true) {
+        message.error("Failed to add book.");
+        setLoading(false);
+        return;
+      }
+      navigate("/admin/ebooks");
       setLoading(false);
       message.success("Book added successfully!");
       // Navigate to the book list page or reset the form
@@ -370,17 +376,6 @@ const AddEBookComponent = () => {
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                label="Description"
-                name="description"
-                rules={[
-                  { required: true, message: "Please input description" },
-                ]}
-              >
-                <TextArea rows={4} placeholder="Please input description" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
                 label="Publication Year"
                 name="publicationYear"
                 rules={[
@@ -393,8 +388,6 @@ const AddEBookComponent = () => {
                 />
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={16}>
             <Col span={12}>
               <Form.Item
                 label="Language"
@@ -404,6 +397,8 @@ const AddEBookComponent = () => {
                 <Input placeholder="Please input language" />
               </Form.Item>
             </Col>
+          </Row>
+          <Row gutter={16}>
             <Col span={12}>
               <Form.Item
                 label="Total Copies"
@@ -414,22 +409,6 @@ const AddEBookComponent = () => {
               >
                 <InputNumber
                   placeholder="Please input total copies"
-                  style={{ width: "100%" }}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                label="Available Copies"
-                name="availableCopies"
-                rules={[
-                  { required: true, message: "Please input available copies" },
-                ]}
-              >
-                <InputNumber
-                  placeholder="Please input available copies"
                   style={{ width: "100%" }}
                 />
               </Form.Item>
@@ -506,6 +485,17 @@ const AddEBookComponent = () => {
                     </Select.Option>
                   ))}
                 </Select>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Description"
+                name="description"
+                rules={[
+                  { required: true, message: "Please input description" },
+                ]}
+              >
+                <TextArea rows={4} placeholder="Please input description" />
               </Form.Item>
             </Col>
           </Row>
